@@ -2,8 +2,13 @@ import java.util.Scanner;
 
 public class RecursionHomework {
     public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        System.out.println(biggestNumber());
+        int a = scanner.nextInt();
+        long startTime = System.nanoTime();
+        System.out.println(fibonacciNumber(a));
+        long elapsedTime = System.nanoTime() - startTime;
+        System.out.println(elapsedTime/1000 + " ms");
     }
 
     public static String recursion(int i) {
@@ -118,5 +123,36 @@ public class RecursionHomework {
             }
         }
         return max;
+     }
+
+     public static void fibonacciSequence(int a, int b, int c, int d){
+        int x;
+         System.out.print(a + " ");
+         x = a + b;
+         if(d == c){
+             return;
+         }
+         d++;
+         fibonacciSequence(b, x, c, d);
+     }
+
+     public static long fibonacciNumber(int n){
+        if(n == 0 || n == 1){
+            return 1;
+        }
+        return fibonacciNumber(n - 1) + fibonacciNumber(n - 2);
+     }
+
+     public static long fibonacciNumberDynamic(int n){
+        long a[] = new long[n + 1];
+        a[0] = 1;
+        if(n != 0){
+            a[1] = 1;
+        }
+
+         for (int i = 2; i < n + 1; i++) {
+             a[i] = a[i - 1] + a[i - 2];
+         }
+         return a[n];
      }
 }
